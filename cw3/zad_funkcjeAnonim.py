@@ -13,4 +13,3 @@ ksiazki = [
 
 sortowanie = lambda lata_wydan: sorted(lata_wydan)
 
-print(ksiazki)
