@@ -8,7 +8,7 @@ version = "0.1.0"
 requires-python = ">=3.10.0"
 description = "Pakiet z kodem z zajęć"
 authors = [
-    { name = "Jakub Staszel", email = "jstaszel@agh.edu.pl" }
+    { name = "Grzegorz Kawecki", email = "gkawecki@student.agh.edu.pl" }
 ]
 
 [tool.setuptools.packages.find]
