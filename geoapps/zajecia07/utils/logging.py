@@ -3,6 +3,7 @@ import logging
 
 def get_logger(
     name: str,
+    log_file: pathlib.Path | str | None = None,
     log_level: int | str = logging.INFO,
 ) -> logging.Logger:
     """Builds a `Logger` instance with provided name and log levels for stream and file.
@@ -16,6 +17,7 @@ def get_logger(
 
     """
     logger = logging.getLogger(name)
+    
     logger.setLevel(log_level)
 
     # Avoid adding multiple handlers if the logger already has them

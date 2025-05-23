@@ -33,12 +33,27 @@ setup-editable:
 ## Add function env below
 ## Creates local environment and installs pre-commit hooks
 
+.PHONY: env 
+env:
+	conda-lock install --mamba -n $(CONDA_ENV_NAME) conda-lock-dev.yml
+	$(CONDA_ACTIVATE) pip install -e .
+	$(CONDA_ACTIVATE) pre-commit install
+
 .PHONY: remove-env  ## Removes current conda environment
 remove-env:
 	mamba env remove -n $(CONDA_ENV_NAME) --yes --quiet
 
 ## Add function recreate-env below
 ## Recreates conda environment by making new one from fresh lockfile
+
+.PHONY: recreate-env
+recreate-env:
+	mamba env remove -n $(CONDA_ENV_NAME) --yes --quiet
+	$(CONDA_ACTIVATE_BASE) conda-lock --mamba -f env.yml -f env-dev.yml --lockfile conda-lock-dev.yml
+	git add conda-lock-dev.yml
+	conda-lock install --mamba -n $(CONDA_ENV_NAME) conda-lock-dev.yml
+	$(CONDA_ACTIVATE) pip install -e .
+	$(CONDA_ACTIVATE) pre-commit install
 
 # Helpers - this will be needed for the next topics during this class
 
